@@ -1,3 +1,5 @@
+<h1> Networking </h1>
+
 | Layer | Purpose | Real-World Example |
 |-------|---------|---------------------|
 | **7. Application** | Interfaces with software apps | **HTTP** for web pages, **SMTP** for email |
