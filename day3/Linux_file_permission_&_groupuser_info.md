@@ -1,6 +1,6 @@
 # Linux.md - Essential Linux Commands and Concepts  
 
-##This guide summarizes key Linux commands and concepts for system management, web server setup, secure communication, and user/file administration.
+## This guide summarizes key Linux commands and concepts for system management, web server setup, secure communication, and user/file administration.
 
 ## 1. Package Manager Commands
 
