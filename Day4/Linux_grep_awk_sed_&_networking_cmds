@@ -1,0 +1,216 @@
+# 📘 Linux Command Reference Guide  
+## 🔍 grep — Pattern Searching Tool
+grep (Global Regular Expression Print) is used to search for patterns within files.
+
+># Common Options
+-i: Ignore case distinctions.
+
+-v: Invert match; select non-matching lines.
+
+-r or -R: Recursively search directories.
+
+-n: Prefix each line of output with the line number.
+
+-l: Print only names of files with matching lines.
+
+-w: Match whole words only.
+
+-e: Specify multiple patterns.
+
+-A NUM: Print NUM lines of trailing context after matching lines.
+
+-B NUM: Print NUM lines of leading context before matching lines.
+
+-C NUM: Print NUM lines of output context.
+
+Examples  
+bash  
+Copy  
+Edit  
+# Search for 'error' in a file
+grep 'error' logfile.txt
+
+# Case-insensitive search
+grep -i 'error' logfile.txt
+
+# Recursive search in current directory
+grep -r 'error' .
+
+# Search for multiple patterns
+grep -e 'error' -e 'fail' logfile.txt
+
+# Display line numbers with matches
+grep -n 'error' logfile.txt
+
+# Search for whole word 'error'
+grep -w 'error' logfile.txt
+Note: grep does not lock files during reading, making it safe to use on files being written by other applications.
+
+# 🧮 awk — Text Processing and Data Extraction
+awk is a powerful programming language designed for text processing and typically used as a data extraction and reporting tool.
+
+Structure
+An awk program consists of a sequence of pattern-action statements:
+
+awk  
+Copy  
+Edit  
+pattern { action }  
+BEGIN { action }: Executed before any input lines are read.  
+
+END { action }: Executed after all input lines are read.  
+
+## Common Built-in Variables  
+NR: Number of Records processed.
+
+NF: Number of Fields in the current record.
+
+$0: Entire current line.
+
+$1, $2, ..., $n: Individual fields in the current line.
+
+Examples
+bash  
+Copy  
+Edit  
+# Print the first column of a file
+awk '{ print $1 }' data.txt
+
+# Sum the values in the second column
+awk '{ sum += $2 } END { print sum }' data.txt
+
+# Print lines where the third field is greater than 100
+awk '$3 > 100' data.txt
+
+# Use BEGIN and END blocks
+awk 'BEGIN { print "Start Processing" } { print $1 } END { print "End Processing" }' data.txt
+Functions in awk
+awk provides various built-in functions:
+
+String Functions: length(), substr(), index(), tolower(), toupper()
+
+Mathematical Functions: sin(), cos(), sqrt(), log(), exp(), int(), rand(), srand()
+
+User-defined Functions: You can define your own functions using the function keyword.
+
+awk
+Copy
+Edit
+function square(x) {
+    return x * x
+}
+Variants of awk
+awk: Original version.
+
+nawk: New awk; includes some enhancements.
+
+gawk: GNU awk; the most feature-rich version.
+
+# ✂️ sed — Stream Editor
+sed is a stream editor used to perform basic text transformations on an input stream (a file or input from a pipeline).
+
+Common Options
+-n: Suppress automatic printing of pattern space.
+
+-e script: Add the script to the commands to be executed.
+
+-f script-file: Add the contents of script-file to the commands to be executed.
+
+-i[SUFFIX]: Edit files in place (makes backup if SUFFIX supplied).
+
+Examples  
+bash  
+Copy  
+Edit  
+# Replace 'apple' with 'orange' in a file
+sed 's/apple/orange/g' file.txt
+
+# Delete lines containing 'apple'
+sed '/apple/d' file.txt
+
+# Print only lines that contain 'apple'
+sed -n '/apple/p' file.txt
+
+# Replace only the first occurrence in each line
+sed 's/apple/orange/' file.txt
+
+# Replace on a specific line number
+sed '3s/apple/orange/' file.txt
+Note: To enable extended regular expressions, use the -r option (GNU sed).
+
+# 🌐 Networking Commands
+## 🔎 nslookup  
+nslookup is a network administration command-line tool for querying the Domain Name System (DNS) to obtain domain name or IP address mapping.
+
+bash  
+Copy  
+Edit  
+nslookup example.com  
+Note: nslookup can provide information such as the IP address of the queried domain, its authoritative DNS server, and other associated DNS records.
+
+## 🔍 dig
+dig (Domain Information Groper) is a flexible tool for interrogating DNS name servers.
+
+bash
+Copy
+Edit
+# Basic DNS lookup
+dig example.com
+
+# Query specific record types
+dig example.com MX
+dig example.com A
+
+# Query all records
+dig example.com ANY
+Note: dig replaces the older nslookup and host commands.
+
+## 🛣️ traceroute
+traceroute prints the route that packets take to reach a network host.
+
+bash  
+Copy  
+Edit  
+traceroute example.com  
+Note: The output shows all intermediate servers (called hops) the packet takes to reach the destination.
+
+## 📈 mtr
+mtr (My Traceroute) combines the functionality of the traceroute and ping programs.
+
+bash  
+Copy  
+Edit  
+mtr example.com  
+Note: mtr provides real-time statistics about the route packets take to their destination.
+
+## 📥 wget
+wget is a non-interactive network downloader.
+
+bash  
+Copy  
+Edit  
+# Download a single file
+wget http://example.com/file.txt
+
+# Download a file and save with a different name
+wget -O newname.txt http://example.com/file.txt
+
+# Download files recursively
+wget -r http://example.com/directory/
+Note: wget provides a number of options allowing you to download multiple files, resume downloads, limit the bandwidth, recursive downloads, download in the background, mirror a website, and much more.
+
+## 🌐 curl
+curl is a tool to transfer data from or to a server using various protocols.
+
+bash  
+Copy  
+Edit  
+# Download a file
+curl -O http://example.com/file.txt
+
+# Fetch headers only
+curl -I http://example.com
+
+# Send a POST request with data
+curl -d "param1=value1&param2=value2" -X POST http://example.com/resource  
+Note: curl is useful for troubleshooting issues, downloading files, and more.
