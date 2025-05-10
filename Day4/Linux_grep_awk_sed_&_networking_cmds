@@ -67,6 +67,8 @@ NF: Number of Fields in the current record.
 
 $0: Entire current line.
 
+{ print }: Prints the content.
+
 $1, $2, ..., $n: Individual fields in the current line.
 
 Examples
